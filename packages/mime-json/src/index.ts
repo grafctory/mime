@@ -17,8 +17,11 @@
 /**
  * JSON processing tasks.
  *
- * Provides ready-made {@link https://github.com/metreeca/flow @metreeca/flow} tasks and helpers for processing JSON
- * content in pipelines run by the {@link https://github.com/metreeca/gear @metreeca/gear} executor.
+ * Provides ready-made {@link https://github.com/metreeca/flow @metreeca/flow} tasks for processing JSON content in
+ * pipelines run by the {@link https://github.com/metreeca/gear @metreeca/gear} executor.
+ *
+ * Helpers alongside the tasks narrow extracted values to the types a pipeline expects and fail fast on unexpected
+ * content. Content digests let a pipeline skip duplicate values and detect changes across successive runs.
  *
  * @module index
  *
@@ -26,8 +29,10 @@
  * @see {@link https://www.rfc-editor.org/rfc/rfc9535 RFC 9535 JSONPath Query Expressions for JSON}
  */
 
-import { assert, isBoolean, isNumber, isString, type Value } from "@metreeca/core";
+import { assert, isBoolean, isNumber, isObject, isString, type Value } from "@metreeca/core";
+import { by } from "@metreeca/core/order";
 import { type IRI, isIRI } from "@metreeca/core/resource";
+import { createHash } from "node:crypto";
 
 export * from "./json.js";
 export * from "./jpath.js";
@@ -88,4 +93,34 @@ export function string(value: Value): string {
  */
 export function link(value: Value): IRI {
 	return assert(value, isIRI);
+}
+
+
+/**
+ * Computes a content digest of a JSON value.
+ *
+ * Values with equal content get the same digest, whatever the order of their object entries. A pipeline can
+ * therefore skip values it has already seen, and detect when a value it already processed changes between runs.
+ * Arrays are ordered, though: the same items in a different order produce a different digest.
+ *
+ * Only content that survives JSON serialisation is digested, so values differing only in what serialisation drops
+ * share a digest. Non-finite numbers count as `null` and negative zero as `0`, just as they would once stored.
+ *
+ * @param value The JSON value to be digested
+ *
+ * @returns The lowercase hex-encoded SHA-256 digest of the content of `value`
+ */
+export function digest(value: Value): string {
+
+	return createHash("sha256")
+		.update(JSON.stringify(value, (_, value) => normalise(value)))
+		.digest("hex");
+
+
+	function normalise(value: Value) {
+		return isObject(value)
+			? Object.fromEntries(Object.entries(value).sort(by(([name]) => name)))
+			: value;
+	}
+
 }
