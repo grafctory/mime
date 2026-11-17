@@ -34,6 +34,7 @@ import { base, content, type Target } from "./xpath.core.js";
 
 export * from "./xml.js";
 export * from "./html.js";
+export * from "./denoise.js";
 export * from "./xpath.js";
 export * from "./focus.js";
 export * from "./untag.js";

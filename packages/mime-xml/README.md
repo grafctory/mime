@@ -22,26 +22,29 @@ npm install @metreeca/mime-xml  # this package
 
 # Usage
 
-| Task                 | Description               |
-|----------------------|---------------------------|
-| [`xml()`][xml]       | XML parser                |
-| [`html()`][html]     | HTML parser               |
-| [`xpath()`][xpath]   | XPath selector            |
-| [`focus()`][focus]   | Content extractor         |
-| [`untag()`][untag]   | Markdown renderer         |
-| [`unwrap()`][unwrap] | Structured data extractor |
+| Task                   | Description               |
+|------------------------|---------------------------|
+| [`xml()`][xml]         | XML parser                |
+| [`html()`][html]       | HTML parser               |
+| [`denoise()`][denoise] | Request noise filter      |
+| [`focus()`][focus]     | Content extractor         |
+| [`xpath()`][xpath]     | XPath selector            |
+| [`unwrap()`][unwrap]   | Structured data extractor |
+| [`untag()`][untag]     | Markdown renderer         |
 
 [xml]: https://metreeca.github.io/mime/functions/_metreeca_mime-xml.xml.html
 
 [html]: https://metreeca.github.io/mime/functions/_metreeca_mime-xml.html.html
 
-[xpath]: https://metreeca.github.io/mime/functions/_metreeca_mime-xml.xpath.html
+[denoise]: https://metreeca.github.io/mime/functions/_metreeca_mime-xml.denoise.html
 
 [focus]: https://metreeca.github.io/mime/functions/_metreeca_mime-xml.focus.html
 
-[untag]: https://metreeca.github.io/mime/functions/_metreeca_mime-xml.untag.html
+[xpath]: https://metreeca.github.io/mime/functions/_metreeca_mime-xml.xpath.html
 
 [unwrap]: https://metreeca.github.io/mime/functions/_metreeca_mime-xml.unwrap.html
+
+[untag]: https://metreeca.github.io/mime/functions/_metreeca_mime-xml.untag.html
 
 # Support
 

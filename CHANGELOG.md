@@ -10,6 +10,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 
 - `@metreeca/mime-xml` — `unwrap()` task, extracting the JSON-LD values X/HTML trees embed in their scripts
+- `@metreeca/mime-xml` — `denoise()` task, filtering out the markup X/HTML pages change on every request while their content stays the same, such as Cloudflare e-mail obfuscation
 - `@metreeca/mime-json` — `digest()` helper, computing content digests of JSON values for duplicate and change detection
 
 ### Security
