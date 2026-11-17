@@ -9,14 +9,23 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- `@metreeca/mime-json` — `digest()` helper, computing digests of JSON values for duplicate and change detection
 - `@metreeca/mime-xml` — `unwrap()` task, extracting the JSON-LD values X/HTML trees embed in their scripts
-- `@metreeca/mime-xml` — `denoise()` task, filtering out the markup X/HTML pages change on every request while their content stays the same, such as Cloudflare e-mail obfuscation
-- `@metreeca/mime-json` — `digest()` helper, computing content digests of JSON values for duplicate and change detection
+- `@metreeca/mime-xml` — `denoise()` task, filtering out the markup X/HTML pages change on every request while their
+  content stays the same, such as Cloudflare e-mail obfuscation, so that unchanged pages compare equal across fetches
+
+### Changed
+
+- **Breaking**: Upgrade `@metreeca/blue` to `^0.14.0`, `@metreeca/core` to `^0.14.0`, `@metreeca/flow` to `^0.13.0`,
+  `@metreeca/http` to `^0.6.0` and `@metreeca/tape` to `^0.13.0`; projects using them alongside this package raise
+  their own dependencies to the same ranges, so that each library is shared as a single copy across the project
 
 ### Security
 
-- Upgrade `vite` to `8.3.5` (GHSA-587h-7wmj-h5pm, GHSA-698v-4r3x-3vcv, GHSA-r825-w8mm-5pxw, GHSA-vfpm-58rq-9qcg, GHSA-rq7h-c2jc-7f22, GHSA-9jrq-w75r-8gcw): development dependency, no consumer impact
-- Upgrade `markdown-it` to `14.3.3` (GHSA-gfr2-rv44-r23c, GHSA-r7fv-28h4-cvq7, GHSA-vfgh-jcmw-g37q): development dependency, no consumer impact
+- Upgrade `vite` to `8.3.5` (GHSA-587h-7wmj-h5pm, GHSA-698v-4r3x-3vcv, GHSA-r825-w8mm-5pxw, GHSA-vfpm-58rq-9qcg,
+  GHSA-rq7h-c2jc-7f22, GHSA-9jrq-w75r-8gcw): development dependency, no consumer impact
+- Upgrade `markdown-it` to `14.3.3` (GHSA-gfr2-rv44-r23c, GHSA-r7fv-28h4-cvq7, GHSA-vfgh-jcmw-g37q): development
+  dependency pulled in by the documentation generator, with no impact on consumers of the packages
 - Upgrade `vitest` to `4.1.12` (GHSA-qxg6-89mg-rqv8, GHSA-xp26-3454-mjgp): development dependency, no consumer impact
 
 ## [0.2.0](https://github.com/metreeca/mime/compare/v0.1.1...v0.2.0) - 2026-10-19
