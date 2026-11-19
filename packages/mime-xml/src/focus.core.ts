@@ -17,7 +17,7 @@
 import type { AnyNode } from "domhandler";
 import { cloneNode, Document, Element, hasChildren, isTag, isText } from "domhandler";
 import { DomUtils } from "htmlparser2";
-import { Ignored, name, normalize, title } from "./index.core.js";
+import { Ignored, name, normalize, text, title } from "./index.core.js";
 
 
 /**
@@ -39,6 +39,14 @@ const Textual = new Set([
 	"small", "sub", "sup", "del", "ins"
 
 ]);
+
+/**
+ * The elements whose text an article doesn't state as content of its own.
+ *
+ * Framing and nested articles carry text about other things, and headings name what follows rather than stating it, so
+ * that an article holding nothing else is read as wrapping a listing rather than as stating content of its own.
+ */
+const Foreign = new Set([...Ignored, "article", "h1", "h2", "h3", "h4", "h5", "h6"]);
 
 /**
  * The scan of a subtree holding no text.
@@ -271,7 +279,7 @@ export function process(node: AnyNode): undefined | Document {
 	 * @param frame Whether the tree drawn from states the frame of a page
 	 * @param title The title the tree drawn from states, if any
 	 *
-	 * @returns A document holding a copy of each region in `regions`
+	 * @returns A document holding a copy of the content of each region in `regions`
 	 */
 	function extract(regions: readonly Element[], frame: boolean, title: undefined | Element): Document {
 
@@ -341,22 +349,58 @@ export function process(node: AnyNode): undefined | Document {
 
 
 		/**
-		 * Copies a region, recording the URL its references resolve against.
+		 * Copies the content of a region, recording the URL its references resolve against.
 		 *
-		 * The URL a region resolved against in the page travels with the copy, so that its references still resolve.
+		 * The copy leaves out the articles nested inside the articles of the region, which belong to separate pieces. The
+		 * URL the region resolved against in the page travels with the copy, so that its references still resolve.
 		 *
 		 * @param region The region to copy
 		 *
-		 * @returns A copy of `region` stating as `xml:base` the URL it resolved against, where the page states one
+		 * @returns A copy of the content of `region` stating as `xml:base` the URL it resolved against in the page, if
+		 *          the page states a base URL for its references at the original position of the region
 		 */
 		function rebased(region: Element): Element {
 
-			const clone = cloneNode(region, true);
+			const clone = detached(region);
 			const target = based(region);
 
 			clone.attribs = target === undefined ? clone.attribs : { ...clone.attribs, "xml:base": target };
 
 			return clone;
+
+		}
+
+		/**
+		 * Copies a region, leaving out the articles nested inside the articles it holds.
+		 *
+		 * An article nested inside another is a separate piece related to it, such as a teaser or a comment, rather than
+		 * part of its content. Nesting is reckoned within the region alone, so that the content a page marks as its own
+		 * is never lost to what surrounds it. An article stating no text of its own beyond headings wraps a listing rather
+		 * than stating content, so the articles it holds are kept as the items of the listing rather than dropped.
+		 *
+		 * @param region The region to copy
+		 *
+		 * @returns A copy of `region` leaving out every article nested inside an article stating content of its own
+		 */
+		function detached(region: Element): Element {
+
+			const clone = cloneNode(region, true);
+
+			nested([clone], false).forEach(article => DomUtils.removeElement(article)); // pruned off a private copy
+
+			return clone;
+
+
+			function nested(nodes: readonly AnyNode[], held: boolean): readonly Element[] {
+				return nodes.filter(isTag).flatMap(element => name(element) !== "article" ? nested(element.children, held)
+					: held ? [element]
+						: nested(element.children, voiced(element))
+				);
+			}
+
+			function voiced(article: Element): boolean {
+				return normalize(text(article, Foreign)).trim() !== "";
+			}
 
 		}
 

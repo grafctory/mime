@@ -7,6 +7,12 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [0.4.0](https://github.com/metreeca/mime/compare/v0.3.0...HEAD)
 
+### Changed
+
+- **Breaking**: `@metreeca/mime-xml` — `focus()` leaves out the articles nested inside an article of the content,
+  such as teasers for related items or comment threads, so that the extracted document stays the same while they rotate;
+  articles held by a wrapper stating nothing but headings are kept as the items of a listing
+
 ## [0.3.0](https://github.com/metreeca/mime/compare/v0.2.0...v0.3.0) - 2026-11-17
 
 ### Added

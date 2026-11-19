@@ -40,6 +40,11 @@ import { process } from "./focus.core.js";
  * Regions are searched below the root of the tree, so a tree rooted at a `main` element is searched for a region
  * inside it. Element names are matched case-insensitively.
  *
+ * Articles nested inside an article of the content, such as teasers for related items or comment threads, are left
+ * out of the document: they are separate pieces related to the article holding them, and they often rotate while the
+ * content itself stays the same. Nesting is reckoned within the selected region alone. An article stating nothing
+ * of its own beyond headings, framing and nested articles is taken to wrap a listing, so its articles are all kept.
+ *
  * Text density favours long runs of text over the same amount of text split into short fragments, and penalises
  * containers holding a large share of framing. Scripts, styles, navigation, headers, footers, sidebars, controls and
  * embedded objects contribute no text, so pages with long menus are scored on their prose alone. Elements without text

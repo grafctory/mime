@@ -149,7 +149,7 @@ describe("process", () => {
 		it("takes the outermost of nested articles", async () => {
 
 			expect(markup(process(tree(`<article><p>alpha</p><article><p>beta</p></article></article>`))))
-				.toBe("<article><p>alpha</p><article><p>beta</p></article></article>");
+				.toBe("<article><p>alpha</p></article>");
 
 		});
 
@@ -157,6 +157,93 @@ describe("process", () => {
 
 			expect(markup(process(tree(`<article><img src="cat.png"></article><div><p>alpha beta</p></div>`))))
 				.toBe(`<div><p>alpha beta</p></div>`);
+
+		});
+
+	});
+
+	describe("nested articles", () => {
+
+		it("leaves out the articles nested inside an article of the main element", async () => {
+
+			expect(markup(process(tree(
+				`<main><article><p>alpha</p><article><p>beta</p></article></article></main>`
+			))))
+				.toBe("<main><article><p>alpha</p></article></main>");
+
+		});
+
+		it("leaves out the articles nested inside an article of an element stating the main role", async () => {
+
+			expect(markup(process(tree(
+				`<div role="main"><article><p>alpha</p><article><p>beta</p></article></article></div>`
+			))))
+				.toBe(`<div role="main"><article><p>alpha</p></article></div>`);
+
+		});
+
+		it("leaves out articles nested at any depth", async () => {
+
+			expect(markup(process(tree(
+				`<main><article><p>alpha</p><div><section><article><p>beta</p></article></section></div></article></main>`
+			))))
+				.toBe("<main><article><p>alpha</p><div><section></section></div></article></main>");
+
+		});
+
+		it("keeps the content an article states around its nested articles", async () => {
+
+			expect(markup(process(tree(
+				`<main><article><p>alpha</p><article><p>beta</p></article><p>gamma</p></article></main>`
+			))))
+				.toBe("<main><article><p>alpha</p><p>gamma</p></article></main>");
+
+		});
+
+		it("keeps the articles a listing states side by side", async () => {
+
+			expect(markup(process(tree(
+				`<main><article><p>alpha</p></article><article><p>beta</p></article></main>`
+			))))
+				.toBe("<main><article><p>alpha</p></article><article><p>beta</p></article></main>");
+
+		});
+
+		it("keeps the articles held by an article carrying no text of its own", async () => {
+
+			expect(markup(process(tree(
+				`<article><img src="cat.png"><article><p>alpha</p></article><article><p>beta</p></article></article>`
+			))))
+				.toBe(`<article><img src="cat.png"><article><p>alpha</p></article><article><p>beta</p></article></article>`);
+
+		});
+
+		it("keeps the articles held by an article stating nothing but headings", async () => {
+
+			expect(markup(process(tree(
+				`<article><h2>alpha</h2><article><p>beta</p></article><article><p>gamma</p></article></article>`
+			))))
+				.toBe(`<article><h2>alpha</h2><article><p>beta</p></article><article><p>gamma</p></article></article>`);
+
+		});
+
+		it("counts nesting within the selected region alone", async () => {
+
+			expect(markup(process(tree(
+				`<article><p>alpha</p><main><article><p>beta</p></article></main></article>`
+			))))
+				.toBe("<main><article><p>beta</p></article></main>");
+
+		});
+
+		it("leaves the tree drawn from untouched", async () => {
+
+			const source = tree(`<main><article><p>alpha</p><article><p>beta</p></article></article></main>`);
+			const before = DomUtils.getOuterHTML(source);
+
+			process(source);
+
+			expect(DomUtils.getOuterHTML(source)).toBe(before);
 
 		});
 
@@ -488,7 +575,7 @@ describe("process", () => {
 	describe("samples", () => {
 
 		/**
-		 * The folder holding the pages the extractor is tuned against, saved as retrieved on 2026-09-02.
+		 * The folder holding the pages the extractor is tuned against, saved as retrieved on 2026-09-02 or later.
 		 *
 		 * The folder is read rather than a list, so a page dropped in it is covered as soon as the expectations below
 		 * state what the extractor is to reduce it to. `matematica.unipv.it` answers `curl` and Node's `fetch` with a
@@ -563,6 +650,13 @@ describe("process", () => {
 				regions: ["main#content"],
 				holds: ["Pavia Summer School"],
 				drops: ["Archivio newsletter"]
+			},
+
+			"utu-event-defence": { // the event nests teasers for related events, rotating daily, as articles of their own
+				source: "https://www.utu.fi/fi/ajankohtaista/tapahtumat/vaitos-sosiaalityo-vtm-sanni-salonen",
+				regions: ["main#main"],
+				holds: ["Sanni Salonen", "Sosiaalityöntekijät yhteiskunnallisina vaikuttajina"],
+				drops: ["Mohammad Reza Akhtari", "Niki Jalava", "Puhelinvaihde"]
 			}
 
 		};
