@@ -7,6 +7,11 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [0.5.0](https://github.com/metreeca/mime/compare/v0.4.0...HEAD)
 
+### Changed
+
+- **Breaking**: `@metreeca/mime-jsonld` — Upgrade `@metreeca/blue` to `^0.15.0`; projects using it alongside this
+  package raise their own dependency to the same range, so that the library is shared as one copy across the project
+
 ## [0.4.0](https://github.com/metreeca/mime/compare/v0.3.0...v0.4.0) - 2026-11-19
 
 ### Changed
