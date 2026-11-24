@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-import type { Object, Value } from "@metreeca/core";
-import type { Task } from "@metreeca/flow";
-import { items } from "@metreeca/flow/feeds";
+import type { Object, Value } from "@grafctory/core";
+import type { Task } from "@grafctory/flow";
+import { items } from "@grafctory/flow/feeds";
 import { process } from "./json.core.js";
 
 

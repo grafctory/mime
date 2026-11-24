@@ -17,9 +17,9 @@
 /**
  * JSON-LD processing tasks.
  *
- * Provides ready-made {@link https://github.com/metreeca/flow @metreeca/flow} tasks for processing JSON-LD content in
- * pipelines run by the {@link https://github.com/metreeca/gear @metreeca/gear} executor, shaped by the
- * {@link https://github.com/metreeca/blue @metreeca/blue} blueprints that describe the linked data at hand.
+ * Provides ready-made {@link https://github.com/grafctory/flow @grafctory/flow} tasks for processing JSON-LD content in
+ * pipelines run by the {@link https://github.com/grafctory/gear @grafctory/gear} executor, shaped by the
+ * {@link https://github.com/grafctory/blue @grafctory/blue} blueprints that describe the linked data at hand.
  *
  * @module index
  *

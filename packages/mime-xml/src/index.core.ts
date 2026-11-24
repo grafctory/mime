@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { type IRI, isIRI } from "@metreeca/core/resource";
+import { type IRI, isIRI } from "@grafctory/core/resource";
 import type { AnyNode, Element, NodeWithChildren } from "domhandler";
 import { hasChildren, isTag, isText } from "domhandler";
 

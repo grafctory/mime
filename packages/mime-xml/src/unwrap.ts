@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-import { isValue, type Value } from "@metreeca/core";
-import type { Task } from "@metreeca/flow";
-import { map } from "@metreeca/flow/tasks";
+import { isValue, type Value } from "@grafctory/core";
+import type { Task } from "@grafctory/flow";
+import { map } from "@grafctory/flow/tasks";
 import type { AnyNode } from "domhandler";
 import { content } from "./xpath.core.js";
 import { xpath } from "./xpath.js";

@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import { isArray, isObject, type Value } from "@metreeca/core"; // aliased, as the global is used
-import { unescape } from "@metreeca/core/strings";
+import { isArray, isObject, type Value } from "@grafctory/core"; // aliased, as the global is used
+import { unescape } from "@grafctory/core/strings";
 
 
 const DotPattern = "(?:^|\\.)(?<dot>\\w+)";

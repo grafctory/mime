@@ -61,7 +61,7 @@ produces is the contract, not the one the HTML5 specification prescribes.
 	memory while parsing it and must document themselves as **materialising**. Do not claim a document is turned into
 	results before it has been read whole.
 
-	This bans a claim, not a word: **streaming** and **materialising** are the memory axis `@metreeca/flow` defines, so a
+	This bans a claim, not a word: **streaming** and **materialising** are the memory axis `@grafctory/flow` defines, so a
 	task drawing trees already parsed (`xpath`, `focus`, `untag`) is graded on what it retains across the feed, not on
 	whether XPath needs a whole tree.
 

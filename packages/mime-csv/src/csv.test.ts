@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { items } from "@metreeca/flow/feeds";
+import { items } from "@grafctory/flow/feeds";
 import { Buffer } from "node:buffer";
 import { setTimeout as delay } from "node:timers/promises";
 import { describe, expect, it } from "vitest";

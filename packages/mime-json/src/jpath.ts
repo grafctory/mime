@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-import { isFunction, type Value } from "@metreeca/core";
-import { Task } from "@metreeca/flow";
-import { map } from "@metreeca/flow/tasks";
+import { isFunction, type Value } from "@grafctory/core";
+import { Task } from "@grafctory/flow";
+import { map } from "@grafctory/flow/tasks";
 import { select } from "./jpath.core.js";
 
 

@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-import type { Value } from "@metreeca/core";
-import { items } from "@metreeca/flow/feeds";
-import { toArray } from "@metreeca/flow/sinks";
+import type { Value } from "@grafctory/core";
+import { items } from "@grafctory/flow/feeds";
+import { toArray } from "@grafctory/flow/sinks";
 import { describe, expect, it } from "vitest";
 import { select } from "./jpath.core.js";
 import { jpath } from "./jpath.js";

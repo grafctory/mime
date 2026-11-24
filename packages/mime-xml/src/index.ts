@@ -17,8 +17,8 @@
 /**
  * XML and HTML processing tasks.
  *
- * Provides ready-made {@link https://github.com/metreeca/flow @metreeca/flow} tasks and helpers for processing XML and
- * HTML content in pipelines run by the {@link https://github.com/metreeca/gear @metreeca/gear} executor.
+ * Provides ready-made {@link https://github.com/grafctory/flow @grafctory/flow} tasks and helpers for processing XML and
+ * HTML content in pipelines run by the {@link https://github.com/grafctory/gear @grafctory/gear} executor.
  *
  * @module index
  *
@@ -27,9 +27,9 @@
  * @see {@link https://www.w3.org/TR/1999/REC-xpath-19991116/ XML Path Language (XPath) 1.0}
  */
 
-import { assert, isBoolean, isNumber } from "@metreeca/core";
-import { type IRI, isIRI } from "@metreeca/core/resource";
-import { tidy } from "@metreeca/core/strings";
+import { assert, isBoolean, isNumber } from "@grafctory/core";
+import { type IRI, isIRI } from "@grafctory/core/resource";
+import { tidy } from "@grafctory/core/strings";
 import { base, content, type Target } from "./xpath.core.js";
 
 export * from "./xml.js";

@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import type { Task } from "@metreeca/flow";
-import { map } from "@metreeca/flow/tasks";
+import type { Task } from "@grafctory/flow";
+import { map } from "@grafctory/flow/tasks";
 import type { AnyNode } from "domhandler";
 import { cfemail } from "./denoise.core.js";
 

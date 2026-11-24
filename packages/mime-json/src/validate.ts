@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import type { Validator } from "@metreeca/core/trace";
-import type { Task } from "@metreeca/flow";
-import { filter } from "@metreeca/flow/tasks";
-import { log } from "@metreeca/tape";
+import type { Validator } from "@grafctory/core/trace";
+import type { Task } from "@grafctory/flow";
+import { filter } from "@grafctory/flow/tasks";
+import { log } from "@grafctory/tape";
 
 
 const logger = log(import.meta.url);

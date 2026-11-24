@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import { parseItem } from "@metreeca/http";
-import { log } from "@metreeca/tape";
+import { parseItem } from "@grafctory/http";
+import { log } from "@grafctory/tape";
 import { parse } from "csv-parse";
 import { pipeline, Readable } from "node:stream";
 import type { Record } from "./index.js";

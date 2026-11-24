@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-import type { IRI } from "@metreeca/core/resource";
-import type { Task } from "@metreeca/flow";
-import { items } from "@metreeca/flow/feeds";
+import type { IRI } from "@grafctory/core/resource";
+import type { Task } from "@grafctory/flow";
+import { items } from "@grafctory/flow/feeds";
 import type { Document } from "domhandler";
 import { process } from "./html.core.js";
 import { isBase } from "./index.core.js";

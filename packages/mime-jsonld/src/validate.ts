@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-import { validate as validator } from "@metreeca/blue";
-import { type ResourceShape } from "@metreeca/blue/resource";
-import type { State } from "@metreeca/blue/value";
-import { type Lazy } from "@metreeca/core";
-import type { Task } from "@metreeca/flow";
-import { map, trim } from "@metreeca/flow/tasks";
-import { log } from "@metreeca/tape";
+import { validate as validator } from "@grafctory/blue";
+import { type ResourceShape } from "@grafctory/blue/resource";
+import type { State } from "@grafctory/blue/value";
+import { type Lazy } from "@grafctory/core";
+import type { Task } from "@grafctory/flow";
+import { map, trim } from "@grafctory/flow/tasks";
+import { log } from "@grafctory/tape";
 
 
 const logger = log(import.meta.url);

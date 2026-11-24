@@ -17,8 +17,8 @@
 /**
  * JSON processing tasks.
  *
- * Provides ready-made {@link https://github.com/metreeca/flow @metreeca/flow} tasks for processing JSON content in
- * pipelines run by the {@link https://github.com/metreeca/gear @metreeca/gear} executor.
+ * Provides ready-made {@link https://github.com/grafctory/flow @grafctory/flow} tasks for processing JSON content in
+ * pipelines run by the {@link https://github.com/grafctory/gear @grafctory/gear} executor.
  *
  * Helpers alongside the tasks narrow extracted values to the types a pipeline expects and fail fast on unexpected
  * content. Content digests let a pipeline skip duplicate values and detect changes across successive runs.
@@ -29,9 +29,9 @@
  * @see {@link https://www.rfc-editor.org/rfc/rfc9535 RFC 9535 JSONPath Query Expressions for JSON}
  */
 
-import { assert, isBoolean, isNumber, isObject, isString, type Value } from "@metreeca/core";
-import { by } from "@metreeca/core/order";
-import { type IRI, isIRI } from "@metreeca/core/resource";
+import { assert, isBoolean, isNumber, isObject, isString, type Value } from "@grafctory/core";
+import { by } from "@grafctory/core/order";
+import { type IRI, isIRI } from "@grafctory/core/resource";
 import { createHash } from "node:crypto";
 
 export * from "./json.js";

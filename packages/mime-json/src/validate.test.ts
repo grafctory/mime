@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import type { Optional } from "@metreeca/core";
-import type { Trace } from "@metreeca/core/trace";
-import { items } from "@metreeca/flow/feeds";
-import { toArray } from "@metreeca/flow/sinks";
+import type { Optional } from "@grafctory/core";
+import type { Trace } from "@grafctory/core/trace";
+import { items } from "@grafctory/flow/feeds";
+import { toArray } from "@grafctory/flow/sinks";
 import { describe, expect, it } from "vitest";
 import { validate } from "./validate.js";
 

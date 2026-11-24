@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-import type { Markdown } from "@metreeca/core/strings";
-import type { Task } from "@metreeca/flow";
-import { map } from "@metreeca/flow/tasks";
+import type { Markdown } from "@grafctory/core/strings";
+import type { Task } from "@grafctory/flow";
+import { map } from "@grafctory/flow/tasks";
 import type { AnyNode } from "domhandler";
 import { process } from "./untag.core.js";
 

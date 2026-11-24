@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import { id, required, resource } from "@metreeca/blue/resource";
-import { string } from "@metreeca/blue/string";
-import { items } from "@metreeca/flow/feeds";
-import { toArray } from "@metreeca/flow/sinks";
+import { id, required, resource } from "@grafctory/blue/resource";
+import { string } from "@grafctory/blue/string";
+import { items } from "@grafctory/flow/feeds";
+import { toArray } from "@grafctory/flow/sinks";
 import { describe, expect, it } from "vitest";
 import { validate } from "./validate.js";
 

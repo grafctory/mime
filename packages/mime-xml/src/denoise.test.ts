@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-import { pipe } from "@metreeca/flow";
-import { items } from "@metreeca/flow/feeds";
-import { toArray } from "@metreeca/flow/sinks";
+import { pipe } from "@grafctory/flow";
+import { items } from "@grafctory/flow/feeds";
+import { toArray } from "@grafctory/flow/sinks";
 import { type AnyNode, Document, Element, Text } from "domhandler";
 import { DomUtils } from "htmlparser2";
 import { describe, expect, it } from "vitest";

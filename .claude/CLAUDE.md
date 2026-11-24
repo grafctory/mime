@@ -11,31 +11,31 @@
 
 # Overview
 
-`@metreeca/mime` is a standalone, general-purpose monorepo collecting task packages, one for each media type it handles.
+`@grafctory/mime` is a standalone, general-purpose monorepo collecting task packages, one for each media type it handles.
 
-Jobs run under the `@metreeca/gear` executor: this repository contributes content processing tasks, **NEVER** an
-execution runtime of its own. Reach for `executor`, `bind` and `service` from `@metreeca/gear` rather than
-reimplementing them, and keep the service contracts compatible with the ones `@metreeca/gear` already resolves.
+Jobs run under the `@grafctory/gear` executor: this repository contributes content processing tasks, **NEVER** an
+execution runtime of its own. Reach for `executor`, `bind` and `service` from `@grafctory/gear` rather than
+reimplementing them, and keep the service contracts compatible with the ones `@grafctory/gear` already resolves.
 
 # References
 
-- [@metreeca/core](https://github.com/metreeca/core) - Core utilities and shared types
-- [@metreeca/flow](https://github.com/metreeca/flow) - Composable async iterable processing
-- [@metreeca/tape](https://github.com/metreeca/tape) - Simplified facade for the LogTape logging framework
-- [@metreeca/gear](https://github.com/metreeca/gear) - Job executor and shared services for data pipelines, which this
+- [@grafctory/core](https://github.com/grafctory/core) - Core utilities and shared types
+- [@grafctory/flow](https://github.com/grafctory/flow) - Composable async iterable processing
+- [@grafctory/tape](https://github.com/grafctory/tape) - Simplified facade for the LogTape logging framework
+- [@grafctory/gear](https://github.com/grafctory/gear) - Job executor and shared services for data pipelines, which this
 	repository builds on
 
 # NPM Scripts
 
 - **`npm run clean`** - Remove dependencies and build artefacts
 - **`npm run prime`** - Install dependencies from the lockfile
-- **`npm run setup`** - Install dependencies and link sibling `@metreeca/*` repositories
+- **`npm run setup`** - Install dependencies and link sibling `@grafctory/*` repositories
 - **`npm run build`** - Compile sources and generate docs
 - **`npm run check`** - Run the test suite
 - **`npm run proof`** - Build and serve docs
 
 > [!CAUTION]
-> **`prime` and `setup` are not interchangeable.** Run `prime` when finalising a public release: `@metreeca/*` imports
+> **`prime` and `setup` are not interchangeable.** Run `prime` when finalising a public release: `@grafctory/*` imports
 > resolve to the published releases recorded in the lockfile. Run `setup` for local development against unpublished
 > sibling branches: imports resolve to the working copies in the neighbouring repositories.
 
@@ -53,7 +53,7 @@ type, whether it parses, selects or validates content, so a new task joins the p
 
 # Shared Utilities
 
-Reach for `@metreeca/core` before writing a helper: its `strings`, `numbers`, `arrays` and `structures` entry points
+Reach for `@grafctory/core` before writing a helper: its `strings`, `numbers`, `arrays` and `structures` entry points
 already cover text tidying, escaping, splitting and templating alongside the common collection and value operations. A
 hand-rolled equivalent duplicates tested code and drifts from it, missing the edge cases the shared one handles.
 
@@ -75,19 +75,19 @@ const report = lazy(async () => service(getSpace)(await path(source))); // ❌
 
 # Testing
 
-The root `vitest.config.ts` resolves imports of symlinked `@metreeca/*` packages, both workspace packages and siblings
-linked by `npm run setup`, to the TypeScript source their `@metreeca/source` export entries declare, so tests run
+The root `vitest.config.ts` resolves imports of symlinked `@grafctory/*` packages, both workspace packages and siblings
+linked by `npm run setup`, to the TypeScript source their `@grafctory/source` export entries declare, so tests run
 against `src/` without a prior build. Packages installed from the registry keep resolving to their published `dist`.
 An export entry lacking the condition falls back to `dist` as well, and tests then see that package as last built.
 
 > [!CAUTION]
-> **NEVER** enable `@metreeca/source` through vitest `resolve.conditions`. Published manifests carry the condition
+> **NEVER** enable `@grafctory/source` through vitest `resolve.conditions`. Published manifests carry the condition
 > while their packages ship no `src/`, and Vite does not fall back to `default` on a missing target, so a global
 > condition breaks every package installed from the registry that declares it, as happens under `npm ci` in CI.
 
 # Version Management
 
 All workspace packages share the root `package.json` version. Beyond the `version` fields the release flow already
-cascades, update the internal `@metreeca/mime*` dependency ranges in every `packages/**/package.json` to match.
+cascades, update the internal `@grafctory/mime*` dependency ranges in every `packages/**/package.json` to match.
 
 When adding, removing, or renaming packages, update the package table in the root `README.md` Usage section to match.

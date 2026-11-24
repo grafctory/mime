@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-import type { IRI } from "@metreeca/core/resource";
-import { parseItem } from "@metreeca/http";
-import { log } from "@metreeca/tape";
+import type { IRI } from "@grafctory/core/resource";
+import { parseItem } from "@grafctory/http";
+import { log } from "@grafctory/tape";
 import type { AnyNode, Document } from "domhandler";
 import { isTag } from "domhandler";
 import { DomUtils, parseDocument } from "htmlparser2";

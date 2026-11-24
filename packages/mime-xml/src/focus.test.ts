@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import { items } from "@metreeca/flow/feeds";
-import { toArray } from "@metreeca/flow/sinks";
+import { items } from "@grafctory/flow/feeds";
+import { toArray } from "@grafctory/flow/sinks";
 import type { AnyNode, Document, Element } from "domhandler";
 import { isDocument, isTag } from "domhandler";
 import { DomUtils, parseDocument } from "htmlparser2";

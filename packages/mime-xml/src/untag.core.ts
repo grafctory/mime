@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import type { Markdown } from "@metreeca/core/strings";
-import { escape } from "@metreeca/core/strings";
+import type { Markdown } from "@grafctory/core/strings";
+import { escape } from "@grafctory/core/strings";
 import type { AnyNode, Element, NodeWithChildren } from "domhandler";
 import { hasChildren, isComment, isTag, isText } from "domhandler";
 import { name, normalize, text, title } from "./index.core.js";

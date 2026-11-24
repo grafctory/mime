@@ -1,7 +1,7 @@
 {
-  "name": "@metreeca/mime-jsonld",
+  "name": "@grafctory/mime-jsonld",
   "version": "0.5.1",
-  "description": "JSON-LD processing tasks for @metreeca/mime.",
+  "description": "JSON-LD processing tasks for @grafctory/mime.",
   "keywords": [
     "typescript",
     "pipeline",
@@ -10,9 +10,9 @@
     "json-ld",
     "linked-data"
   ],
-  "homepage": "https://metreeca.github.io/mime/",
+  "homepage": "https://grafctory.github.io/mime/",
   "bugs": {
-    "url": "https://github.com/metreeca/mime/issues",
+    "url": "https://github.com/grafctory/mime/issues",
     "email": "info@metreeca.com"
   },
   "license": "Apache-2.0",
@@ -23,14 +23,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/metreeca/mime.git",
+    "url": "git+https://github.com/grafctory/mime.git",
     "directory": "packages/mime-jsonld"
   },
   "type": "module",
   "sideEffects": false,
   "exports": {
     ".": {
-      "@metreeca/source": "./src/index.ts",
+      "@grafctory/source": "./src/index.ts",
       "default": "./dist/index.js"
     }
   },
@@ -48,10 +48,10 @@
     "check": "npx vitest --typecheck run"
   },
   "dependencies": {
-    "@metreeca/blue": "^0.15.0",
-    "@metreeca/core": "^0.14.0",
-    "@metreeca/flow": "^0.13.0",
-    "@metreeca/tape": "^0.13.0"
+    "@grafctory/blue": "^0.15.0",
+    "@grafctory/core": "^0.14.0",
+    "@grafctory/flow": "^0.13.0",
+    "@grafctory/tape": "^0.13.0"
   },
   "devDependencies": {
     "@types/node": "^25.9.3",

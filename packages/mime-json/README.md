@@ -1,14 +1,14 @@
-# @metreeca/mime-json
+# @grafctory/mime-json
 
-[![npm](https://img.shields.io/npm/v/@metreeca/mime-json)](https://www.npmjs.com/package/@metreeca/mime-json)
+[![npm](https://img.shields.io/npm/v/@grafctory/mime-json)](https://www.npmjs.com/package/@grafctory/mime-json)
 
-JSON processing tasks for [@metreeca/mime](https://github.com/metreeca/mime).
+JSON processing tasks for [@grafctory/mime](https://github.com/grafctory/mime).
 
 # Installation
 
 ```shell
-npm install @metreeca/gear       # the job executor
-npm install @metreeca/mime-json  # this package
+npm install @grafctory/gear       # the job executor
+npm install @grafctory/mime-json  # this package
 ```
 
 > [!IMPORTANT]
@@ -28,18 +28,18 @@ npm install @metreeca/mime-json  # this package
 | [`jpath()`][jpath]       | JSON path selector   |
 | [`validate()`][validate] | JSON value validator |
 
-[json]: https://metreeca.github.io/mime/functions/_metreeca_mime-json.json.html
+[json]: https://grafctory.github.io/mime/functions/_grafctory_mime-json.json.html
 
-[jpath]: https://metreeca.github.io/mime/functions/_metreeca_mime-json.jpath.html
+[jpath]: https://grafctory.github.io/mime/functions/_grafctory_mime-json.jpath.html
 
-[validate]: https://metreeca.github.io/mime/functions/_metreeca_mime-json.validate.html
+[validate]: https://grafctory.github.io/mime/functions/_grafctory_mime-json.validate.html
 
 # Support
 
-- open an [issue](https://github.com/metreeca/mime/issues) to report a problem or to suggest a new feature
-- start a [discussion](https://github.com/metreeca/mime/discussions) to ask a how-to question or to share an idea
+- open an [issue](https://github.com/grafctory/mime/issues) to report a problem or to suggest a new feature
+- start a [discussion](https://github.com/grafctory/mime/discussions) to ask a how-to question or to share an idea
 
 # License
 
 This project is licensed under the Apache 2.0 License –
-see [LICENSE](https://github.com/metreeca/mime?tab=Apache-2.0-1-ov-file) file for details.
+see [LICENSE](https://github.com/grafctory/mime?tab=Apache-2.0-1-ov-file) file for details.

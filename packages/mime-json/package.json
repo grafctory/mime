@@ -1,7 +1,7 @@
 {
-  "name": "@metreeca/mime-json",
+  "name": "@grafctory/mime-json",
   "version": "0.5.1",
-  "description": "JSON processing tasks for @metreeca/mime.",
+  "description": "JSON processing tasks for @grafctory/mime.",
   "keywords": [
     "typescript",
     "pipeline",
@@ -9,9 +9,9 @@
     "extraction",
     "json"
   ],
-  "homepage": "https://metreeca.github.io/mime/",
+  "homepage": "https://grafctory.github.io/mime/",
   "bugs": {
-    "url": "https://github.com/metreeca/mime/issues",
+    "url": "https://github.com/grafctory/mime/issues",
     "email": "info@metreeca.com"
   },
   "license": "Apache-2.0",
@@ -22,14 +22,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/metreeca/mime.git",
+    "url": "git+https://github.com/grafctory/mime.git",
     "directory": "packages/mime-json"
   },
   "type": "module",
   "sideEffects": false,
   "exports": {
     ".": {
-      "@metreeca/source": "./src/index.ts",
+      "@grafctory/source": "./src/index.ts",
       "default": "./dist/index.js"
     }
   },
@@ -47,10 +47,10 @@
     "check": "npx vitest --typecheck run"
   },
   "dependencies": {
-    "@metreeca/core": "^0.14.0",
-    "@metreeca/flow": "^0.13.0",
-    "@metreeca/http": "^0.6.0",
-    "@metreeca/tape": "^0.13.0"
+    "@grafctory/core": "^0.14.0",
+    "@grafctory/flow": "^0.13.0",
+    "@grafctory/http": "^0.6.0",
+    "@grafctory/tape": "^0.13.0"
   },
   "devDependencies": {
     "@types/node": "^25.9.3",

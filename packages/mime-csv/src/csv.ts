@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import type { Task } from "@metreeca/flow";
-import { items } from "@metreeca/flow/feeds";
+import type { Task } from "@grafctory/flow";
+import { items } from "@grafctory/flow/feeds";
 import { process } from "./csv.core.js";
 import type { Record } from "./index.js";
 

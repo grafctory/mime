@@ -1,14 +1,14 @@
-# @metreeca/mime-csv
+# @grafctory/mime-csv
 
-[![npm](https://img.shields.io/npm/v/@metreeca/mime-csv)](https://www.npmjs.com/package/@metreeca/mime-csv)
+[![npm](https://img.shields.io/npm/v/@grafctory/mime-csv)](https://www.npmjs.com/package/@grafctory/mime-csv)
 
-CSV processing tasks for [@metreeca/mime](https://github.com/metreeca/mime).
+CSV processing tasks for [@grafctory/mime](https://github.com/grafctory/mime).
 
 # Installation
 
 ```shell
-npm install @metreeca/gear      # the job executor
-npm install @metreeca/mime-csv  # this package
+npm install @grafctory/gear      # the job executor
+npm install @grafctory/mime-csv  # this package
 ```
 
 > [!IMPORTANT]
@@ -26,14 +26,14 @@ npm install @metreeca/mime-csv  # this package
 |----------------|-------------|
 | [`csv()`][csv] | CSV parser  |
 
-[csv]: https://metreeca.github.io/mime/functions/_metreeca_mime-csv.csv.html
+[csv]: https://grafctory.github.io/mime/functions/_grafctory_mime-csv.csv.html
 
 # Support
 
-- open an [issue](https://github.com/metreeca/mime/issues) to report a problem or to suggest a new feature
-- start a [discussion](https://github.com/metreeca/mime/discussions) to ask a how-to question or to share an idea
+- open an [issue](https://github.com/grafctory/mime/issues) to report a problem or to suggest a new feature
+- start a [discussion](https://github.com/grafctory/mime/discussions) to ask a how-to question or to share an idea
 
 # License
 
 This project is licensed under the Apache 2.0 License –
-see [LICENSE](https://github.com/metreeca/mime?tab=Apache-2.0-1-ov-file) file for details.
+see [LICENSE](https://github.com/grafctory/mime?tab=Apache-2.0-1-ov-file) file for details.

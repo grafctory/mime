@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-import type { Object, Value } from "@metreeca/core";
-import { parseItem } from "@metreeca/http";
-import { log, report } from "@metreeca/tape";
+import type { Object, Value } from "@grafctory/core";
+import { parseItem } from "@grafctory/http";
+import { log, report } from "@grafctory/tape";
 
 
 /**

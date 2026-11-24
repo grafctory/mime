@@ -17,8 +17,8 @@
 /**
  * CSV processing tasks.
  *
- * Provides ready-made {@link https://github.com/metreeca/flow @metreeca/flow} tasks for processing CSV content in
- * pipelines run by the {@link https://github.com/metreeca/gear @metreeca/gear} executor.
+ * Provides ready-made {@link https://github.com/grafctory/flow @grafctory/flow} tasks for processing CSV content in
+ * pipelines run by the {@link https://github.com/grafctory/gear @grafctory/gear} executor.
  *
  * @module index
  *
