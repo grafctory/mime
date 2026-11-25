@@ -1,8 +1,15 @@
 # @grafctory/mime-json
 
-[![npm](https://img.shields.io/npm/v/@grafctory/mime-json)](https://www.npmjs.com/package/@grafctory/mime-json)
+[![npm][npm-badge]][npm] [![Grafctory][grafctory-badge]][grafctory]
 
-JSON processing tasks for [@grafctory/mime](https://github.com/grafctory/mime).
+[npm-badge]: https://img.shields.io/npm/v/@grafctory/mime-json
+[npm]: https://www.npmjs.com/package/@grafctory/mime-json
+[grafctory-badge]: https://img.shields.io/badge/part%20of-Grafctory-blue
+[grafctory]: https://github.com/grafctory
+
+JSON processing tasks for [@grafctory/mime].
+
+[@grafctory/mime]: https://github.com/grafctory/mime
 
 # Installation
 
@@ -43,3 +50,5 @@ npm install @grafctory/mime-json  # this package
 
 This project is licensed under the Apache 2.0 License –
 see [LICENSE](https://github.com/grafctory/mime?tab=Apache-2.0-1-ov-file) file for details.
+
+<sub>Grafctory™ is a trademark of Metreeca srl.</sub>

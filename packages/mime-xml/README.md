@@ -1,8 +1,15 @@
 # @grafctory/mime-xml
 
-[![npm](https://img.shields.io/npm/v/@grafctory/mime-xml)](https://www.npmjs.com/package/@grafctory/mime-xml)
+[![npm][npm-badge]][npm] [![Grafctory][grafctory-badge]][grafctory]
 
-XML and HTML processing tasks for [@grafctory/mime](https://github.com/grafctory/mime).
+[npm-badge]: https://img.shields.io/npm/v/@grafctory/mime-xml
+[npm]: https://www.npmjs.com/package/@grafctory/mime-xml
+[grafctory-badge]: https://img.shields.io/badge/part%20of-Grafctory-blue
+[grafctory]: https://github.com/grafctory
+
+XML and HTML processing tasks for [@grafctory/mime].
+
+[@grafctory/mime]: https://github.com/grafctory/mime
 
 # Installation
 
@@ -55,3 +62,5 @@ npm install @grafctory/mime-xml  # this package
 
 This project is licensed under the Apache 2.0 License –
 see [LICENSE](https://github.com/grafctory/mime?tab=Apache-2.0-1-ov-file) file for details.
+
+<sub>Grafctory™ is a trademark of Metreeca srl.</sub>

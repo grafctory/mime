@@ -1,8 +1,15 @@
 # @grafctory/mime-csv
 
-[![npm](https://img.shields.io/npm/v/@grafctory/mime-csv)](https://www.npmjs.com/package/@grafctory/mime-csv)
+[![npm][npm-badge]][npm] [![Grafctory][grafctory-badge]][grafctory]
 
-CSV processing tasks for [@grafctory/mime](https://github.com/grafctory/mime).
+[npm-badge]: https://img.shields.io/npm/v/@grafctory/mime-csv
+[npm]: https://www.npmjs.com/package/@grafctory/mime-csv
+[grafctory-badge]: https://img.shields.io/badge/part%20of-Grafctory-blue
+[grafctory]: https://github.com/grafctory
+
+CSV processing tasks for [@grafctory/mime].
+
+[@grafctory/mime]: https://github.com/grafctory/mime
 
 # Installation
 
@@ -37,3 +44,5 @@ npm install @grafctory/mime-csv  # this package
 
 This project is licensed under the Apache 2.0 License –
 see [LICENSE](https://github.com/grafctory/mime?tab=Apache-2.0-1-ov-file) file for details.
+
+<sub>Grafctory™ is a trademark of Metreeca srl.</sub>

@@ -2,10 +2,11 @@
 
 Ready-made tasks for parsing and serialising content by media type.
 
-**@grafctory/mime** provides ready-made [@grafctory/flow](https://github.com/grafctory/flow) tasks for converting content
-between the usual interchange formats and the values a pipeline works on: parsing documents into records and serialising
-results back into documents. The tasks run under the [@grafctory/gear](https://github.com/grafctory/gear) job executor,
-which supplies the shared services they draw on and releases them once the run ends.
+**@grafctory/mime** is the content format module of the [Grafctory][grafctory] model-driven knowledge graph framework.
+It provides ready-made [@grafctory/flow] tasks for converting content between the usual interchange formats and the
+values a pipeline works on: parsing documents into records and serialising results back into documents. The tasks run
+under the [@grafctory/gear] job executor, which supplies the shared services they draw on and releases them once the run
+ends.
 
 - **Ready-Made Tasks**: parsing and serialisation, chaining alongside any other task
 - **Minimal Footprint**: one package per media type, each pulling in only the libraries that type needs
@@ -14,6 +15,10 @@ which supplies the shared services they draw on and releases them once the run e
 >
 > Pipelines are server-side workloads targeting [Node.js](https://nodejs.org/) 22 or later, relying on facilities such
 > as the filesystem, the process environment and `fetch`. The packages are not intended for the browser.
+
+[@grafctory/flow]: https://github.com/grafctory/flow
+[@grafctory/gear]: https://github.com/grafctory/gear
+[grafctory]: https://github.com/grafctory
 
 # Installation
 
@@ -29,7 +34,7 @@ npm install @grafctory/mime-<type>   # task package, one per media type
 
 Install a task package for each media type the pipeline handles. Task packages are self-contained leaves, each pulling
 in only the libraries its own media type needs. No package pulls in the
-[@grafctory/gear](https://github.com/grafctory/gear) job executor on its own: install it directly to set up and run a job.
+[@grafctory/gear] job executor on its own: install it directly to set up and run a job.
 
 | Package                 | Description                   |
 |-------------------------|-------------------------------|
@@ -62,3 +67,5 @@ in only the libraries its own media type needs. No package pulls in the
 
 This project is licensed under the Apache 2.0 License –
 see [LICENSE](https://github.com/grafctory/mime?tab=Apache-2.0-1-ov-file) file for details.
+
+<sub>Grafctory™ is a trademark of Metreeca srl.</sub>
