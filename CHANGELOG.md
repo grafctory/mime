@@ -10,20 +10,20 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased](https://github.com/grafctory/mime/compare/v0.5.1...HEAD)
 
-## [0.5.1](https://github.com/metreeca/mime/compare/v0.5.0...v0.5.1) - 2026-11-24
+## [0.5.1](https://github.com/grafctory/mime/compare/v0.5.0...v0.5.1) - 2026-11-24
 
 ### Changed
 
 - Maintenance release with no change to the published API or behaviour
 
-## [0.5.0](https://github.com/metreeca/mime/compare/v0.4.0...v0.5.0) - 2026-11-19
+## [0.5.0](https://github.com/grafctory/mime/compare/v0.4.0...v0.5.0) - 2026-11-19
 
 ### Changed
 
 - **Breaking**: `@metreeca/mime-jsonld` — Upgrade `@metreeca/blue` to `^0.15.0`; projects using it alongside this
   package raise their own dependency to the same range, so that the library is shared as one copy across the project
 
-## [0.4.0](https://github.com/metreeca/mime/compare/v0.3.0...v0.4.0) - 2026-11-19
+## [0.4.0](https://github.com/grafctory/mime/compare/v0.3.0...v0.4.0) - 2026-11-19
 
 ### Changed
 
@@ -31,7 +31,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   such as teasers for related items or comment threads, so that the extracted document stays the same while they rotate;
   articles held by a wrapper stating nothing but headings are kept as the items of a listing
 
-## [0.3.0](https://github.com/metreeca/mime/compare/v0.2.0...v0.3.0) - 2026-11-17
+## [0.3.0](https://github.com/grafctory/mime/compare/v0.2.0...v0.3.0) - 2026-11-17
 
 ### Added
 
@@ -54,7 +54,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   dependency pulled in by the documentation generator, with no impact on consumers of the packages
 - Upgrade `vitest` to `4.1.12` (GHSA-qxg6-89mg-rqv8, GHSA-xp26-3454-mjgp): development dependency, no consumer impact
 
-## [0.2.0](https://github.com/metreeca/mime/compare/v0.1.1...v0.2.0) - 2026-10-19
+## [0.2.0](https://github.com/grafctory/mime/compare/v0.1.1...v0.2.0) - 2026-10-19
 
 ### Added
 
@@ -72,7 +72,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - `@metreeca/mime` package, which exported no API: install the task packages directly, alongside `@metreeca/gear`
 
-## [0.1.1](https://github.com/metreeca/mime/compare/v0.1.0...v0.1.1) - 2026-10-14
+## [0.1.1](https://github.com/grafctory/mime/compare/v0.1.0...v0.1.1) - 2026-10-14
 
 ### Fixed
 
@@ -86,10 +86,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Upgrade `@metreeca/http` to `^0.4.1`
 - Upgrade `@metreeca/tape` to `^0.11.1`
 
-## [0.1.0](https://github.com/metreeca/mime/releases/tag/v0.1.0) - 2026-10-01
+## [0.1.0](https://github.com/grafctory/mime/releases/tag/v0.1.0) - 2026-10-01
 
 Initial release of ready-made tasks for parsing content by media type, running under the
-[@metreeca/gear](https://github.com/metreeca/gear) job executor, which is installed separately. Task packages are
+[@metreeca/gear](https://github.com/grafctory/gear) job executor, which is installed separately. Task packages are
 self-contained leaves, each pulling in only the libraries its own media type needs. The parsing tasks are migrated from
 the `@metreeca/gear-*` packages.
 
