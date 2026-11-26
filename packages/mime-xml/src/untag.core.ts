@@ -180,12 +180,16 @@ export function process(node: AnyNode): Markdown {
 			case "a":
 
 				return rendered(element)
-					? append(clip(children(append(buffer, "["), element)), "](", attribute(element, "href"), ")")
+					? append(clip(children(append(buffer, "["), element)),
+					"](", resolve(attribute(element, "href"), element), ")"
+				)
 					: buffer;
 
 			case "img":
 
-				return append(buffer, "![", normalize(attribute(element, "alt").trim()), "](", attribute(element, "src"), ")");
+				return append(buffer,
+					"![", normalize(attribute(element, "alt").trim()), "](", resolve(attribute(element, "src"), element), ")"
+				);
 
 			case "strong":
 			case "b":
@@ -352,6 +356,10 @@ export function process(node: AnyNode): Markdown {
 
 	function attribute(element: Element, name: string): string {
 		return element.attribs[name] ?? "";
+	}
+
+	function resolve(reference: string, element: Element): string { // an empty one would resolve to the base itself
+		return reference === "" ? reference : URL.parse(reference, base(element))?.href ?? reference;
 	}
 
 }

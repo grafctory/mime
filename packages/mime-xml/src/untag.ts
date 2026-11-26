@@ -70,6 +70,10 @@ import { process } from "./untag.core.js";
  * behind. It is also excluded from the text of headings, emphasis and the frontmatter title, so that captions of
  * controls and graphics don't leak into the surrounding prose.
  *
+ * Link and image targets, fragment references included, are resolved against the base URL in scope at their element,
+ * so that a rendering stored or displayed away from its source page still leads back to it. A target that doesn't
+ * resolve to an absolute URL is kept as stated, as happens in trees without a base URL. An empty target stays empty.
+ *
  * > [!IMPORTANT]
  * >
  * > Pages holding their content inside a form, such as filtered listings or pages wrapped in a server-side form, are

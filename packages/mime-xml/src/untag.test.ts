@@ -285,6 +285,87 @@ describe("process", () => {
 
 	});
 
+	describe("references", () => {
+
+		/**
+		 * Renders body markup inside a page recording `https://example.com/a/b` as its base URL.
+		 */
+		function based(body: string): string {
+			return process(tree(`<html xml:base="https://example.com/a/b"><body>${body}</body></html>`));
+		}
+
+		/**
+		 * Prefixes a rendering with the frontmatter {@link based} pages open with.
+		 */
+		function fronted(body: string): string {
+			return `---\nurl: "https://example.com/a/b"\n---\n\n${body}`;
+		}
+
+		it("resolves a relative link target against the base URL", async () => {
+
+			expect(based(`<p><a href="c">alpha</a></p>`))
+				.toBe(fronted("[alpha](https://example.com/a/c)"));
+
+		});
+
+		it("resolves a relative image source against the base URL", async () => {
+
+			expect(based(`<p><img src="/c.png" alt="alpha"></p>`))
+				.toBe(fronted("![alpha](https://example.com/c.png)"));
+
+		});
+
+		it("resolves a fragment reference against the base URL", async () => {
+
+			expect(based(`<p><a href="#c">alpha</a></p>`))
+				.toBe(fronted("[alpha](https://example.com/a/b#c)"));
+
+		});
+
+		it("resolves the targets of a link wrapping an image", async () => {
+
+			expect(based(`<p><a href="c"><img src="d.png" alt="alpha"></a></p>`))
+				.toBe(fronted("[![alpha](https://example.com/a/d.png)](https://example.com/a/c)"));
+
+		});
+
+		it("resolves targets against the nearest base URL in scope", async () => {
+
+			expect(based(`<div xml:base="https://example.net/c/"><a href="d">alpha</a></div>`))
+				.toBe(fronted("[alpha](https://example.net/c/d)"));
+
+		});
+
+		it("keeps an absolute target", async () => {
+
+			expect(based(`<p><a href="mailto:alpha@example.net">alpha</a></p>`))
+				.toBe(fronted("[alpha](mailto:alpha@example.net)"));
+
+		});
+
+		it("keeps a relative target stated under no base URL", async () => {
+
+			expect(process(tree(`<p><a href="c">alpha</a><img src="d.png" alt="beta"></p>`)))
+				.toBe("[alpha](c) ![beta](d.png)");
+
+		});
+
+		it("keeps a target resolving to no URL", async () => {
+
+			expect(based(`<p><a href="http://[c">alpha</a></p>`))
+				.toBe(fronted("[alpha](http://[c)"));
+
+		});
+
+		it("keeps an empty or missing target empty", async () => {
+
+			expect(based(`<p><a href="">alpha</a> <a>beta</a> <img src="" alt="gamma"></p>`))
+				.toBe(fronted("[alpha]() [beta]() ![gamma]()"));
+
+		});
+
+	});
+
 	describe("text", () => {
 
 		it("collapses runs of whitespace", async () => {

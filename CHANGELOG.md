@@ -10,6 +10,11 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [0.6.0](https://github.com/grafctory/mime/compare/v0.5.1...HEAD)
 
+### Fixed
+
+- `@grafctory/mime-xml` — `untag()` resolves link and image targets against the source page, so that a rendering
+  stored or displayed away from that page still leads back to it
+
 ## [0.5.1](https://github.com/grafctory/mime/compare/v0.5.0...v0.5.1) - 2026-11-24
 
 ### Changed
