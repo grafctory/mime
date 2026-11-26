@@ -8,7 +8,16 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 > [!NOTE]
 > Packages published under the `@grafctory` scope from version 0.5.1; earlier versions were published under `@metreeca`.
 
-## [0.6.0](https://github.com/grafctory/mime/compare/v0.5.1...HEAD)
+## [Unreleased](https://github.com/grafctory/mime/compare/v0.6.0...HEAD)
+
+## [0.6.0](https://github.com/grafctory/mime/compare/v0.5.1...v0.6.0) - 2026-11-26
+
+### Changed
+
+- **Breaking**: `@grafctory/mime-jsonld` - Upgrade `@grafctory/blue` to `^0.16.0`, which reads an empty language map
+  as an absent value, so a description stating a required localised property as `{}` or `{ en: [] }` no longer passes
+  `validate()`; projects using Blue alongside this package raise their own dependency to the same range
+- READMEs introduce the packages as part of the Grafctory framework, and bug reports by email go to `info@grafctory.dev`
 
 ### Fixed
 
