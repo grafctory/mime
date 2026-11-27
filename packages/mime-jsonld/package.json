@@ -49,9 +49,9 @@
   },
   "dependencies": {
     "@grafctory/blue": "^0.16.0",
-    "@grafctory/core": "^0.14.0",
-    "@grafctory/flow": "^0.13.0",
-    "@grafctory/tape": "^0.13.0"
+    "@grafctory/core": "^0.14.3",
+    "@grafctory/flow": "^0.13.2",
+    "@grafctory/tape": "^0.13.3"
   },
   "devDependencies": {
     "@types/node": "^25.9.3",

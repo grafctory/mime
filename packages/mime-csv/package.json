@@ -47,9 +47,9 @@
     "check": "npx vitest --typecheck run"
   },
   "dependencies": {
-    "@grafctory/flow": "^0.13.0",
-    "@grafctory/http": "^0.6.0",
-    "@grafctory/tape": "^0.13.0",
+    "@grafctory/flow": "^0.13.2",
+    "@grafctory/http": "^0.6.2",
+    "@grafctory/tape": "^0.13.3",
     "csv-parse": "^7.0.2"
   },
   "devDependencies": {

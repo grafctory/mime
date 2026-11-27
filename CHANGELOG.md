@@ -8,7 +8,9 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 > [!NOTE]
 > Packages published under the `@grafctory` scope from version 0.5.1; earlier versions were published under `@metreeca`.
 
-## [0.7.0](https://github.com/grafctory/mime/compare/v0.6.0...HEAD)
+## [Unreleased](https://github.com/grafctory/mime/compare/v0.7.0...HEAD)
+
+## [0.7.0](https://github.com/grafctory/mime/compare/v0.6.0...v0.7.0) - 2026-11-27
 
 ### Added
 
