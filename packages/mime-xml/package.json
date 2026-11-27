@@ -1,6 +1,6 @@
 {
   "name": "@grafctory/mime-xml",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "XML and HTML processing tasks for @grafctory/mime.",
   "keywords": [
     "typescript",

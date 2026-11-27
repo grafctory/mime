@@ -1,6 +1,6 @@
 {
   "name": "@grafctory/mime-csv",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "CSV processing tasks for @grafctory/mime.",
   "keywords": [
     "typescript",
