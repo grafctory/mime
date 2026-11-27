@@ -74,6 +74,10 @@ import { process } from "./untag.core.js";
  * so that a rendering stored or displayed away from its source page still leads back to it. A target that doesn't
  * resolve to an absolute URL is kept as stated, as happens in trees without a base URL. An empty target stays empty.
  *
+ * A `data:` target longer than the `embedded` limit is replaced by the bare `data:,` placeholder. The image or link
+ * stays in place, but the embedded asset no longer floods the rendering or slows it down. Shorter `data:` targets,
+ * such as icons and small graphics, are rendered like any other target. Without a limit, no target is replaced.
+ *
  * > [!IMPORTANT]
  * >
  * > Pages holding their content inside a form, such as filtered listings or pages wrapped in a server-side form, are
@@ -96,6 +100,9 @@ import { process } from "./untag.core.js";
  * > - **Stateless**: each tree is rendered independently, so the result doesn't depend on how the feed is split across
  * >   nested feeds or runs.
  *
+ * @param options The rendering options
+ * @param options.embedded The longest `data:` target rendered as is, in characters; the default `0` sets no limit
+ *
  * @returns A task converting a feed of parsed X/HTML trees into a feed of Markdown text
  *
  * @throws {@link !Error Error} While the feed is consumed, if the source feed fails
@@ -103,11 +110,20 @@ import { process } from "./untag.core.js";
  * @see {@link https://spec.commonmark.org/ CommonMark Spec}
  * @see {@link https://json-ld.org/ JSON-LD}
  * @see {@link https://www.w3.org/TR/xmlbase/ XML Base}
+ * @see {@link https://www.rfc-editor.org/rfc/rfc2397 RFC 2397 - The "data" URL scheme}
  *
  * @group Factories
  */
-export function untag(): Task<AnyNode, Markdown> {
+export function untag({
 
-	return map(process);
+	embedded = 0
+
+}: {
+
+	readonly embedded?: number
+
+} = {}): Task<AnyNode, Markdown> {
+
+	return map(node => process(node, embedded));
 
 }

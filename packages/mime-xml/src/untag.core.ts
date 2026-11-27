@@ -28,6 +28,11 @@ import { base } from "./xpath.core.js";
 const Indent = "  ";
 
 /**
+ * The references stating an embedded asset rather than pointing at one.
+ */
+const Data = /^\s*data:/i;
+
+/**
  * The elements rendered as nothing.
  *
  * Lists the framing, the controls and the embedded objects a reader is after no text from, alongside the document
@@ -61,6 +66,14 @@ type Buffer = {
 	readonly text: string;
 
 	/**
+	 * The last two characters of the text.
+	 *
+	 * Line breaks and spaces are decided on this field rather than on the text, because reading the text would copy the
+	 * whole text every time a break or a space is placed, at a cost growing with the length of the rendering.
+	 */
+	readonly tail: string;
+
+	/**
 	 * A space withheld until content is written after it on the same line, so that whitespace neither trails the
 	 * content nor opens a line.
 	 */
@@ -87,11 +100,11 @@ type Buffer = {
  *
  * Helper backing the `untag()` task, which states the conversion contract.
  */
-export function process(node: AnyNode): Markdown {
+export function process(node: AnyNode, embedded: number = 0): Markdown {
 
 	const titled = title(node);
 	const url = located(node);
-	const body = format({ text: "", space: false, level: 0, item: false }, node).text.trim();
+	const body = format({ text: "", tail: "", space: false, level: 0, item: false }, node).text.trim();
 
 	const front = [
 		...(titled === undefined ? [] : [`title: "${escape(plain(titled))}"`]),
@@ -217,28 +230,37 @@ export function process(node: AnyNode): Markdown {
 
 	function append(buffer: Buffer, ...strings: readonly string[]): Buffer {
 
-		return [...strings.join("")].reduce(write, buffer);
+		// content is written a run at a time, so that memory and time grow only as fast as the text does
 
-		function write(buffer: Buffer, char: string): Buffer {
+		return (strings.join("").match(/[ \t\r\n]|[^ \t\r\n]+/g) ?? []).reduce(write, buffer);
 
-			const { text, space } = buffer;
-
-			return char === " " || char === "\t" ? { ...buffer, space: true } // withheld until content follows it
-				: char === "\r" ? { ...buffer, space: false }
-					: char === "\n" ? { ...buffer, text: `${text}\n`, space: false }
+		function write(buffer: Buffer, token: string): Buffer {
+			return token === " " || token === "\t" ? { ...buffer, space: true } // withheld until content follows it
+				: token === "\r" ? { ...buffer, space: false }
+					: token === "\n" ? { ...put(buffer, "\n"), space: false }
 						: {
-							...buffer,
-							text: space && !opening(text) ? `${text} ${char}` : `${text}${char}`,
+							...put(buffer, buffer.space && !opening(buffer) ? ` ${token}` : token),
 							space: false,
 							item: false // the line has taken the content its marker opened it for
 						};
-
 		}
 
-		function opening(text: string): boolean { // no space is written where a line has yet to take content
-			const last = text.charAt(text.length-1);
+		function opening({ tail }: Buffer): boolean { // no space is written where a line has yet to take content
+			const last = tail.slice(-1);
 			return last === "" || last === "\n" || last === " ";
 		}
+
+	}
+
+	function put(buffer: Buffer, string: string): Buffer {
+
+		const { text, tail } = buffer;
+
+		return {
+			...buffer,
+			text: `${text}${string}`,
+			tail: string.length >= 2 ? string.slice(-2) : `${tail}${string}`.slice(-2)
+		};
 
 	}
 
@@ -258,27 +280,27 @@ export function process(node: AnyNode): Markdown {
 
 	function padded(buffer: Buffer): Buffer {
 
-		const { text } = buffer;
+		const { text, tail } = buffer;
 
-		return { ...buffer, text: text.length > 2 && text.charAt(text.length-2) !== "\n" ? `${text}\n` : text };
+		return text.length > 2 && tail.charAt(0) !== "\n" ? put(buffer, "\n") : buffer;
 
 	}
 
 	function wrap(buffer: Buffer): Buffer {
 
-		const { text } = buffer;
+		const { text, tail } = buffer;
 
 		return buffer.item ? buffer
-			: { ...buffer, text: text.length > 1 && !text.endsWith("\n") ? `${text}\n` : text, space: false };
+			: { ...(text.length > 1 && !tail.endsWith("\n") ? put(buffer, "\n") : buffer), space: false };
 
 	}
 
 	function split(buffer: Buffer): Buffer { // saturating at the blank line two breaks lay down
 
-		const { text } = buffer;
+		const { text, tail } = buffer;
 
 		return buffer.item ? buffer
-			: { ...buffer, text: text.length > 0 && !text.endsWith("\n\n") ? `${text}\n` : text, space: false };
+			: { ...(text.length > 0 && tail !== "\n\n" ? put(buffer, "\n") : buffer), space: false };
 
 	}
 
@@ -296,9 +318,9 @@ export function process(node: AnyNode): Markdown {
 
 	function margin(buffer: Buffer): Buffer { // written as it is, as whitespace is otherwise withheld
 
-		const { text, level } = buffer;
+		const { level } = buffer;
 
-		return buffer.item ? buffer : { ...buffer, text: `${text}${Indent.repeat(Math.max(level-1, 0))}` };
+		return buffer.item ? buffer : put(buffer, Indent.repeat(Math.max(level-1, 0)));
 
 	}
 
@@ -359,7 +381,9 @@ export function process(node: AnyNode): Markdown {
 	}
 
 	function resolve(reference: string, element: Element): string { // an empty one would resolve to the base itself
-		return reference === "" ? reference : URL.parse(reference, base(element))?.href ?? reference;
+		return reference === "" ? reference
+			: embedded > 0 && reference.length > embedded && Data.test(reference) ? "data:," // elided before any cost
+				: URL.parse(reference, base(element))?.href ?? reference;
 	}
 
 }

@@ -10,6 +10,11 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [0.7.0](https://github.com/grafctory/mime/compare/v0.6.0...HEAD)
 
+### Added
+
+- `@grafctory/mime-xml` — `untag()` accepts an `embedded` limit replacing longer `data:` link and image targets with
+  a bare placeholder, so embedded assets no longer flood renderings or slow them down
+
 ## [0.6.0](https://github.com/grafctory/mime/compare/v0.5.1...v0.6.0) - 2026-11-26
 
 ### Changed

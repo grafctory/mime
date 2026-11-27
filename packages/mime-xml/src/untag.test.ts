@@ -364,6 +364,70 @@ describe("process", () => {
 
 		});
 
+		describe("data targets", () => {
+
+			const payload = `data:image/png;base64,${"A".repeat(100)}`;
+
+			it("keeps a data target within the embedded limit", async () => {
+
+				expect(process(tree(`<p><img src="data:image/png;base64,AAAA" alt="alpha"></p>`), 64))
+					.toBe("![alpha](data:image/png;base64,AAAA)");
+
+			});
+
+			it("keeps a data target as long as the embedded limit", async () => {
+
+				expect(process(tree(`<p><img src="${payload}" alt="alpha"></p>`), payload.length))
+					.toBe(`![alpha](${payload})`);
+
+			});
+
+			it("elides an image data target exceeding the embedded limit", async () => {
+
+				expect(process(tree(`<p><img src="${payload}" alt="alpha"></p>`), 64))
+					.toBe("![alpha](data:,)");
+
+			});
+
+			it("elides a link data target exceeding the embedded limit", async () => {
+
+				expect(process(tree(`<p><a href="${payload}">alpha</a></p>`), 64))
+					.toBe("[alpha](data:,)");
+
+			});
+
+			it("elides a data target exceeding the embedded limit under a base URL", async () => {
+
+				expect(process(tree(`<html xml:base="https://example.com/"><body><p><a href="${payload}">alpha</a></p></body></html>`), 64))
+					.toBe(`---\nurl: "https://example.com/"\n---\n\n[alpha](data:,)`);
+
+			});
+
+			it("matches the data scheme case insensitively", async () => {
+
+				expect(process(tree(`<p><img src="DATA:${payload.slice(5)}" alt="alpha"></p>`), 64))
+					.toBe("![alpha](data:,)");
+
+			});
+
+			it("keeps a long target other than a data one", async () => {
+
+				expect(process(tree(`<p><a href="https://example.com/${"a".repeat(100)}">alpha</a></p>`), 64))
+					.toBe(`[alpha](https://example.com/${"a".repeat(100)})`);
+
+			});
+
+			it("sets no limit by default or at zero", async () => {
+
+				const markup = `<p><img src="${payload}" alt="alpha"></p>`;
+
+				expect(process(tree(markup))).toBe(`![alpha](${payload})`);
+				expect(process(tree(markup), 0)).toBe(`![alpha](${payload})`);
+
+			});
+
+		});
+
 	});
 
 	describe("text", () => {
@@ -711,6 +775,20 @@ describe("process", () => {
 
 	});
 
+	describe("scale", () => {
+
+		it("renders a megabyte of prose within a second", async () => {
+
+			const prose = "word ".repeat(200_000);
+			const start = performance.now();
+
+			expect(process(tree(`<p>${prose}</p>`))).toBe(prose.trim());
+			expect(performance.now()-start).toBeLessThan(1000);
+
+		});
+
+	});
+
 });
 
 describe("untag", () => {
@@ -728,6 +806,14 @@ describe("untag", () => {
 		const trees: readonly AnyNode[] = [tree(``), tree(`<p>alpha</p>`)];
 
 		expect(await items(trees)(untag())(toArray())).toEqual(["", "alpha"]);
+
+	});
+
+	it("elides the data targets exceeding the embedded limit", async () => {
+
+		const trees: readonly AnyNode[] = [tree(`<p><img src="data:image/png;base64,${"A".repeat(100)}" alt="alpha"></p>`)];
+
+		expect(await items(trees)(untag({ embedded: 64 }))(toArray())).toEqual(["![alpha](data:,)"]);
 
 	});
 
